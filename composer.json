@@ -11,8 +11,8 @@
     "homepage": "https://github.com/akhan619/laravel-ses-event-manager",
     "keywords": ["Laravel", "SES", "webhooks", "http", "https", "email", "events", "bounce", "open", "click", "delivery", "send"],
     "require": {
-        "php": "^8.0.2",
-        "illuminate/support": "~9",
+        "php": "^8.1",
+        "illuminate/support": "~10",
         "aws/aws-php-sns-message-validator": "^1.6",
         "aws/aws-sdk-php": "^3.218",
         "symfony/psr-http-message-bridge": "^2.0",
