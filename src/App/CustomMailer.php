@@ -16,7 +16,7 @@ class CustomMailer extends Mailer
      *
      * @return Akhan619\LaravelSesEventManager\App\CustomPendingMail
      */
-    public function to($users)
+    public function to($users, $name = null)
     {
         return (new CustomPendingMail($this))->to($users);
     }
@@ -28,7 +28,7 @@ class CustomMailer extends Mailer
      *
      * @return Akhan619\LaravelSesEventManager\App\CustomPendingMail
      */
-    public function cc($users)
+    public function cc($users, $name = null)
     {
         return (new CustomPendingMail($this))->cc($users);
     }
@@ -40,7 +40,7 @@ class CustomMailer extends Mailer
      *
      * @return Akhan619\LaravelSesEventManager\App\CustomPendingMail
      */
-    public function bcc($users)
+    public function bcc($users, $name = null)
     {
         return (new CustomPendingMail($this))->bcc($users);
     }
