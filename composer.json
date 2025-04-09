@@ -12,7 +12,7 @@
     "keywords": ["Laravel", "SES", "webhooks", "http", "https", "email", "events", "bounce", "open", "click", "delivery", "send"],
     "require": {
         "php": "^8.2",
-        "illuminate/support": "~11",
+        "illuminate/support": "^11.0",
         "aws/aws-php-sns-message-validator": "^1.6",
         "aws/aws-sdk-php": "^3.218",
         "symfony/psr-http-message-bridge": "^2.0",
