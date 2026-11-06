@@ -5,6 +5,7 @@ namespace Akhan619\LaravelSesEventManager\Tests\Feature\Implementations;
 use Akhan619\LaravelSesEventManager\App\Models\Email;
 use Akhan619\LaravelSesEventManager\Tests\FeatureTestCase;
 use Illuminate\Routing\Router;
+use PHPUnit\Framework\Attributes\Test;
 
 class EventManagerComplaintTest extends FeatureTestCase
 {
@@ -42,7 +43,7 @@ class EventManagerComplaintTest extends FeatureTestCase
         parent::tearDown();
     }
 
-    /** @test */
+    #[Test]
     public function complaintEventIsSuccessfullySavedWithFeedbackReportData()
     {
         $this->assertDatabaseCount($this->complaintTable, 0);
@@ -77,7 +78,7 @@ class EventManagerComplaintTest extends FeatureTestCase
         $this->assertModelExists($email->complaint);
     }
 
-    /** @test */
+    #[Test]
     public function complaintEventIsSuccessfullySavedWithoutFeedbackReportData()
     {
         $this->assertDatabaseCount($this->complaintTable, 0);

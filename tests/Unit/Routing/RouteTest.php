@@ -5,6 +5,8 @@ namespace Akhan619\LaravelSesEventManager\Tests\Unit\Routing;
 use Akhan619\LaravelSesEventManager\Implementations\RouteLoader;
 use Akhan619\LaravelSesEventManager\Tests\UnitTestCase;
 use Illuminate\Routing\Router;
+use Orchestra\Testbench\Attributes\DefineEnvironment;
+use PHPUnit\Framework\Attributes\Test;
 
 class RouteTest extends UnitTestCase
 {
@@ -52,19 +54,15 @@ class RouteTest extends UnitTestCase
         $app['config']->set('laravel-ses-event-manager.handle_email_events', false);
     }
 
-    /**
-     * @test
-     * @define-env enableRouting
-     */
+    #[Test]
+    #[DefineEnvironment('enableRouting')]
     public function routesAreLoadedWhenHandleEmailEventsIsTrue()
     {
         $this->assertTrue($this->router->has($this->routeNames), 'Routes were not loaded when they should be.');
     }
 
-    /**
-     * @test
-     * @define-env disableRouting
-     */
+    #[Test]
+    #[DefineEnvironment('disableRouting')]
     public function routesAreNotLoadedWhenHandleEmailEventsIsFalse()
     {
         foreach ($this->routeNames as $name) {

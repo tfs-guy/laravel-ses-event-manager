@@ -15,6 +15,8 @@ use Illuminate\Mail\SendQueuedMailable;
 use Illuminate\Mail\SentMessage;
 use Illuminate\Support\Facades\Queue;
 use Mockery as m;
+use Orchestra\Testbench\Attributes\DefineEnvironment;
+use PHPUnit\Framework\Attributes\Test;
 
 class SesMailerTest extends UnitTestCase
 {
@@ -24,17 +26,13 @@ class SesMailerTest extends UnitTestCase
         parent::tearDown();
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function sesMailerIsAvailableToUse()
     {
         $this->assertTrue(app()->bound('SesMailer'));
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function sesMailerIsSetToUseSesTransport()
     {
         $this->assertEquals('ses', app()->make('SesMailer')->getSymfonyTransport()->__toString());
@@ -46,10 +44,8 @@ class SesMailerTest extends UnitTestCase
         $app['config']->set('laravel-ses-event-manager.ses_options.region', 'Wadiya');
     }
 
-    /**
-     * @test
-     * @define-env setExtraOptions
-     */
+    #[Test]
+    #[DefineEnvironment('setExtraOptions')]
     public function optionsAreLoadedIntoSesMailer()
     {
         $transport = app()->make('SesMailer')->getSymfonyTransport();
@@ -65,10 +61,8 @@ class SesMailerTest extends UnitTestCase
         $app['config']->set('laravel-ses-event-manager.ses_options.options.ConfigurationSetName', 'non-existent-set');
     }
 
-    /**
-     * @test
-     * @define-env setMailTestingEnvironment
-     */
+    #[Test]
+    #[DefineEnvironment('setMailTestingEnvironment')]
     public function sesMailerCanSendTestMailableWithToMethod()
     {
         $sesMailer = m::mock(SesMailer::class)->makePartial();
@@ -89,10 +83,8 @@ class SesMailerTest extends UnitTestCase
         $this->assertTrue(true);
     }
 
-    /**
-     * @test
-     * @define-env setMailTestingEnvironment
-     */
+    #[Test]
+    #[DefineEnvironment('setMailTestingEnvironment')]
     public function sesMailerCanSendTestMailableWithRecipientDeclaredInMailable()
     {
         $sesMailer = m::mock(SesMailer::class)->makePartial();
@@ -113,10 +105,8 @@ class SesMailerTest extends UnitTestCase
         $this->assertTrue(true);
     }
 
-    /**
-     * @test
-     * @define-env setMailTestingEnvironment
-     */
+    #[Test]
+    #[DefineEnvironment('setMailTestingEnvironment')]
     public function sesMailerCanSendMailsInSequence()
     {
         $sesMailer = m::mock(SesMailer::class)->makePartial();
@@ -142,10 +132,8 @@ class SesMailerTest extends UnitTestCase
         $this->assertTrue(true);
     }
 
-    /**
-     * @test
-     * @define-env setMailTestingEnvironment
-     */
+    #[Test]
+    #[DefineEnvironment('setMailTestingEnvironment')]
     public function sesMailerThrowsErrorOnMultipleRecipientsSetThroughCc()
     {
         $sesMailer = m::mock(SesMailer::class)->makePartial();
@@ -158,10 +146,8 @@ class SesMailerTest extends UnitTestCase
         $sesMailer->to('john@doe.com')->cc('jane@doe.com')->send($mailable);
     }
 
-    /**
-     * @test
-     * @define-env setMailTestingEnvironment
-     */
+    #[Test]
+    #[DefineEnvironment('setMailTestingEnvironment')]
     public function sesMailerThrowsErrorOnMultipleRecipientsSetThroughBcc()
     {
         $sesMailer = m::mock(SesMailer::class)->makePartial();
@@ -174,10 +160,8 @@ class SesMailerTest extends UnitTestCase
         $sesMailer->to('john@doe.com')->bcc('jane@doe.com')->send($mailable);
     }
 
-    /**
-     * @test
-     * @define-env setMailTestingEnvironment
-     */
+    #[Test]
+    #[DefineEnvironment('setMailTestingEnvironment')]
     public function sesMailerThrowsErrorOnMultipleRecipientsSetThroughMailable()
     {
         $sesMailer = m::mock(SesMailer::class)->makePartial();
@@ -190,10 +174,8 @@ class SesMailerTest extends UnitTestCase
         $sesMailer->send($mailable);
     }
 
-    /**
-     * @test
-     * @define-env setMailTestingEnvironment
-     */
+    #[Test]
+    #[DefineEnvironment('setMailTestingEnvironment')]
     public function sesMailerCanQueueAQueuedMailable()
     {
         Queue::fake();
@@ -205,10 +187,8 @@ class SesMailerTest extends UnitTestCase
         Queue::assertPushed(SendQueuedMailable::class, 1);
     }
 
-    /**
-     * @test
-     * @define-env setMailTestingEnvironment
-     */
+    #[Test]
+    #[DefineEnvironment('setMailTestingEnvironment')]
     public function sesMailerCanQueueWithQueueMethod()
     {
         Queue::fake();
@@ -220,10 +200,8 @@ class SesMailerTest extends UnitTestCase
         Queue::assertPushed(SendQueuedMailable::class, 1);
     }
 
-    /**
-     * @test
-     * @define-env setMailTestingEnvironment
-     */
+    #[Test]
+    #[DefineEnvironment('setMailTestingEnvironment')]
     public function queuedMailWithTraitIsSentUsingSesMailer()
     {
         Queue::fake();

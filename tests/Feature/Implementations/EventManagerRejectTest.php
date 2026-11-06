@@ -5,6 +5,7 @@ namespace Akhan619\LaravelSesEventManager\Tests\Feature\Implementations;
 use Akhan619\LaravelSesEventManager\App\Models\Email;
 use Akhan619\LaravelSesEventManager\Tests\FeatureTestCase;
 use Illuminate\Routing\Router;
+use PHPUnit\Framework\Attributes\Test;
 
 class EventManagerRejectTest extends FeatureTestCase
 {
@@ -42,7 +43,7 @@ class EventManagerRejectTest extends FeatureTestCase
         parent::tearDown();
     }
 
-    /** @test */
+    #[Test]
     public function rejectEventIsSuccessfullySaved()
     {
         $this->assertDatabaseCount($this->rejectTable, 0);

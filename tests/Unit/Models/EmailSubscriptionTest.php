@@ -6,6 +6,7 @@ use Akhan619\LaravelSesEventManager\App\Models\Email;
 use Akhan619\LaravelSesEventManager\App\Models\EmailSubscription;
 use Akhan619\LaravelSesEventManager\Tests\UnitTestCase;
 use Illuminate\Support\Facades\Schema;
+use PHPUnit\Framework\Attributes\Test;
 
 class EmailSubscriptionTest extends UnitTestCase
 {
@@ -34,13 +35,13 @@ class EmailSubscriptionTest extends UnitTestCase
         parent::tearDown();
     }
 
-    /** @test */
+    #[Test]
     public function emailSubscriptionsTableIsCreatedSuccessfully()
     {
         $this->assertTrue(Schema::hasTable(config('laravel-ses-event-manager.database_name_prefix').'_email_subscriptions'));
     }
 
-    /** @test */
+    #[Test]
     public function emailSubscriptionModelCanBeCreatedSuccessfully()
     {
         $email = Email::factory()->subscribed()->create();
@@ -51,7 +52,7 @@ class EmailSubscriptionTest extends UnitTestCase
         $this->assertEquals($email->message_id, $emailSubscription->message_id, 'message_ids dont match for the two model instances.');
     }
 
-    /** @test */
+    #[Test]
     public function modelRelationshipsAreWorking()
     {
         $email = Email::factory()->subscribed()->create();

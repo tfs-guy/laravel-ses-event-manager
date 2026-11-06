@@ -5,6 +5,7 @@ namespace Akhan619\LaravelSesEventManager\Tests\Feature\Implementations;
 use Akhan619\LaravelSesEventManager\App\Models\Email;
 use Akhan619\LaravelSesEventManager\Tests\FeatureTestCase;
 use Illuminate\Routing\Router;
+use PHPUnit\Framework\Attributes\Test;
 
 class EventManagerBounceTest extends FeatureTestCase
 {
@@ -42,7 +43,7 @@ class EventManagerBounceTest extends FeatureTestCase
         parent::tearDown();
     }
 
-    /** @test */
+    #[Test]
     public function bouceEventIsSuccessfullySavedWithDsnData()
     {
         $this->assertDatabaseCount($this->bounceTable, 0);
@@ -77,7 +78,7 @@ class EventManagerBounceTest extends FeatureTestCase
         $this->assertModelExists($email->bounce);
     }
 
-    /** @test */
+    #[Test]
     public function bouceEventIsSuccessfullySavedWithoutDsnData()
     {
         $this->assertDatabaseCount($this->bounceTable, 0);

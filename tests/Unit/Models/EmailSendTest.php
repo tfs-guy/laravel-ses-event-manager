@@ -6,6 +6,7 @@ use Akhan619\LaravelSesEventManager\App\Models\Email;
 use Akhan619\LaravelSesEventManager\App\Models\EmailSend;
 use Akhan619\LaravelSesEventManager\Tests\UnitTestCase;
 use Illuminate\Support\Facades\Schema;
+use PHPUnit\Framework\Attributes\Test;
 
 class EmailSendTest extends UnitTestCase
 {
@@ -34,13 +35,13 @@ class EmailSendTest extends UnitTestCase
         parent::tearDown();
     }
 
-    /** @test */
+    #[Test]
     public function emailSendsTableIsCreatedSuccessfully()
     {
         $this->assertTrue(Schema::hasTable(config('laravel-ses-event-manager.database_name_prefix').'_email_sends'));
     }
 
-    /** @test */
+    #[Test]
     public function emailSendModelCanBeCreatedSuccessfully()
     {
         $email = Email::factory()->sent()->create();
@@ -51,7 +52,7 @@ class EmailSendTest extends UnitTestCase
         $this->assertEquals($email->message_id, $emailSend->message_id, 'message_ids dont match for the two model instances.');
     }
 
-    /** @test */
+    #[Test]
     public function modelRelationshipsAreWorking()
     {
         $email = Email::factory()->sent()->create();

@@ -6,6 +6,7 @@ use Akhan619\LaravelSesEventManager\App\Models\Email;
 use Akhan619\LaravelSesEventManager\App\Models\EmailDelivery;
 use Akhan619\LaravelSesEventManager\Tests\UnitTestCase;
 use Illuminate\Support\Facades\Schema;
+use PHPUnit\Framework\Attributes\Test;
 
 class EmailDeliveryTest extends UnitTestCase
 {
@@ -34,13 +35,13 @@ class EmailDeliveryTest extends UnitTestCase
         parent::tearDown();
     }
 
-    /** @test */
+    #[Test]
     public function emailDeliveriesTableIsCreatedSuccessfully()
     {
         $this->assertTrue(Schema::hasTable(config('laravel-ses-event-manager.database_name_prefix').'_email_deliveries'));
     }
 
-    /** @test */
+    #[Test]
     public function emailDeliveryModelCanBeCreatedSuccessfully()
     {
         $email = Email::factory()->delivered()->create();
@@ -51,7 +52,7 @@ class EmailDeliveryTest extends UnitTestCase
         $this->assertEquals($email->message_id, $emailDelivery->message_id, 'message_ids dont match for the two model instances.');
     }
 
-    /** @test */
+    #[Test]
     public function modelRelationshipsAreWorking()
     {
         $email = Email::factory()->delivered()->create();

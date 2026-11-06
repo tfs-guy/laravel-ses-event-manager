@@ -5,6 +5,7 @@ namespace Akhan619\LaravelSesEventManager\Tests\Unit\Models;
 use Akhan619\LaravelSesEventManager\App\Models\Email;
 use Akhan619\LaravelSesEventManager\Tests\UnitTestCase;
 use Illuminate\Support\Facades\Schema;
+use PHPUnit\Framework\Attributes\Test;
 
 class EmailTest extends UnitTestCase
 {
@@ -32,13 +33,13 @@ class EmailTest extends UnitTestCase
         parent::tearDown();
     }
 
-    /** @test */
+    #[Test]
     public function emailsTableIsCreatedSuccessfully()
     {
         $this->assertTrue(Schema::hasTable(config('laravel-ses-event-manager.database_name_prefix').'_emails'));
     }
 
-    /** @test */
+    #[Test]
     public function emailModelCanBeCreatedSuccessfully()
     {
         $email = Email::factory()->create();
