@@ -5,6 +5,7 @@ namespace Akhan619\LaravelSesEventManager\Tests\Feature\Implementations;
 use Akhan619\LaravelSesEventManager\App\Models\Email;
 use Akhan619\LaravelSesEventManager\Tests\FeatureTestCase;
 use Illuminate\Routing\Router;
+use PHPUnit\Framework\Attributes\Test;
 
 class EventManagerRenderingFailureTest extends FeatureTestCase
 {
@@ -42,7 +43,7 @@ class EventManagerRenderingFailureTest extends FeatureTestCase
         parent::tearDown();
     }
 
-    /** @test */
+    #[Test]
     public function renderingFailureEventIsSuccessfullySaved()
     {
         $this->assertDatabaseCount($this->renderingTable, 0);

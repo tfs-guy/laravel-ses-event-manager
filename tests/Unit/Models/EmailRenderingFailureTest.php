@@ -6,6 +6,7 @@ use Akhan619\LaravelSesEventManager\App\Models\Email;
 use Akhan619\LaravelSesEventManager\App\Models\EmailRenderingFailure;
 use Akhan619\LaravelSesEventManager\Tests\UnitTestCase;
 use Illuminate\Support\Facades\Schema;
+use PHPUnit\Framework\Attributes\Test;
 
 class EmailRenderingFailureTest extends UnitTestCase
 {
@@ -34,13 +35,13 @@ class EmailRenderingFailureTest extends UnitTestCase
         parent::tearDown();
     }
 
-    /** @test */
+    #[Test]
     public function emailRenderingFailuresTableIsCreatedSuccessfully()
     {
         $this->assertTrue(Schema::hasTable(config('laravel-ses-event-manager.database_name_prefix').'_email_rendering_failures'));
     }
 
-    /** @test */
+    #[Test]
     public function emailRenderingFailureModelCanBeCreatedSuccessfully()
     {
         $email = Email::factory()->renderingFailed()->create();
@@ -51,7 +52,7 @@ class EmailRenderingFailureTest extends UnitTestCase
         $this->assertEquals($email->message_id, $emailRenderingFailure->message_id, 'message_ids dont match for the two model instances.');
     }
 
-    /** @test */
+    #[Test]
     public function modelRelationshipsAreWorking()
     {
         $email = Email::factory()->renderingFailed()->create();

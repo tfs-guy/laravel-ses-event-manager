@@ -6,6 +6,7 @@ use Akhan619\LaravelSesEventManager\App\Models\Email;
 use Akhan619\LaravelSesEventManager\App\Models\EmailReject;
 use Akhan619\LaravelSesEventManager\Tests\UnitTestCase;
 use Illuminate\Support\Facades\Schema;
+use PHPUnit\Framework\Attributes\Test;
 
 class EmailRejectTest extends UnitTestCase
 {
@@ -34,13 +35,13 @@ class EmailRejectTest extends UnitTestCase
         parent::tearDown();
     }
 
-    /** @test */
+    #[Test]
     public function emailRejectsTableIsCreatedSuccessfully()
     {
         $this->assertTrue(Schema::hasTable(config('laravel-ses-event-manager.database_name_prefix').'_email_rejects'));
     }
 
-    /** @test */
+    #[Test]
     public function emailRejectModelCanBeCreatedSuccessfully()
     {
         $email = Email::factory()->rejected()->create();
@@ -51,7 +52,7 @@ class EmailRejectTest extends UnitTestCase
         $this->assertEquals($email->message_id, $emailReject->message_id, 'message_ids dont match for the two model instances.');
     }
 
-    /** @test */
+    #[Test]
     public function modelRelationshipsAreWorking()
     {
         $email = Email::factory()->rejected()->create();

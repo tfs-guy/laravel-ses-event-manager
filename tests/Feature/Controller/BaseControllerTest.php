@@ -6,6 +6,8 @@ use Akhan619\LaravelSesEventManager\Tests\FeatureTestCase;
 use Illuminate\Http\Client\Request;
 use Illuminate\Routing\Router;
 use Illuminate\Support\Facades\Http;
+use Orchestra\Testbench\Attributes\DefineEnvironment;
+use PHPUnit\Framework\Attributes\Test;
 
 class BaseControllerTest extends FeatureTestCase
 {
@@ -37,10 +39,8 @@ class BaseControllerTest extends FeatureTestCase
         $app['config']->set('laravel-ses-event-manager.confirm_subscription', true);
     }
 
-    /**
-     * @test
-     * @define-env enableSubscriptionConfirmation
-     */
+    #[Test]
+    #[DefineEnvironment('enableSubscriptionConfirmation')]
     public function subscriptionIsConfirmedCorrectlyWhenEnabled(): void
     {
         Http::fake([
@@ -61,10 +61,8 @@ class BaseControllerTest extends FeatureTestCase
         ->assertStatus(200);
     }
 
-    /**
-     * @test
-     * @define-env disableSubscriptionConfirmation
-     */
+    #[Test]
+    #[DefineEnvironment('disableSubscriptionConfirmation')]
     public function subscriptionIsSkippedCorrectlyWhenDisabled(): void
     {
         Http::fake([
@@ -89,9 +87,7 @@ class BaseControllerTest extends FeatureTestCase
         });
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function subscriptionFailsWhenGetRequestToSubscribeUrlReturnsNonOkStatus(): void
     {
         Http::fake([
@@ -112,9 +108,7 @@ class BaseControllerTest extends FeatureTestCase
         ->assertStatus(422);
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function returnsCorrectStatusWhenNotificationTypeIsUnknown(): void
     {
         $fakeJson = json_decode($this->exampleUnknownResponseType);
@@ -130,9 +124,7 @@ class BaseControllerTest extends FeatureTestCase
         ->assertStatus(422);
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function returnsCorrectStatusWhenResponseMessageBodyFailsToParse(): void
     {
         $fakeJson = json_decode($this->examplePoorNotificationResponseMessageBody);

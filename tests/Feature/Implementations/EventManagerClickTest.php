@@ -5,6 +5,7 @@ namespace Akhan619\LaravelSesEventManager\Tests\Feature\Implementations;
 use Akhan619\LaravelSesEventManager\App\Models\Email;
 use Akhan619\LaravelSesEventManager\Tests\FeatureTestCase;
 use Illuminate\Routing\Router;
+use PHPUnit\Framework\Attributes\Test;
 
 class EventManagerClickTest extends FeatureTestCase
 {
@@ -42,7 +43,7 @@ class EventManagerClickTest extends FeatureTestCase
         parent::tearDown();
     }
 
-    /** @test */
+    #[Test]
     public function clickEventIsSuccessfullySaved()
     {
         $this->assertDatabaseCount($this->clickTable, 0);
@@ -77,7 +78,7 @@ class EventManagerClickTest extends FeatureTestCase
         $this->assertModelExists($email->clicks->first());
     }
 
-    /** @test */
+    #[Test]
     public function multipleClickEventsAreSuccessfullySaved()
     {
         $this->assertDatabaseCount($this->clickTable, 0);

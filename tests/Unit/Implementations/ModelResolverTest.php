@@ -4,12 +4,11 @@ namespace Akhan619\LaravelSesEventManager\Tests\Unit\Implementations;
 
 use Akhan619\LaravelSesEventManager\Contracts\ModelResolverContract;
 use Akhan619\LaravelSesEventManager\Tests\UnitTestCase;
+use PHPUnit\Framework\Attributes\Test;
 
 class ModelResolverTest extends UnitTestCase
 {
-    /**
-     * @test
-     */
+    #[Test]
     public function modelResolverCanRegisterCallback()
     {
         $resolver = app()->make(ModelResolverContract::class);
@@ -20,9 +19,7 @@ class ModelResolverTest extends UnitTestCase
         $this->assertFalse($resolver->hasCallback('NonExistentEvent'));
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function modelResolverCanExecuteRegisteredCallback()
     {
         $resolver = app()->make(ModelResolverContract::class);

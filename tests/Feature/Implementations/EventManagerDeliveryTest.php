@@ -5,6 +5,7 @@ namespace Akhan619\LaravelSesEventManager\Tests\Feature\Implementations;
 use Akhan619\LaravelSesEventManager\App\Models\Email;
 use Akhan619\LaravelSesEventManager\Tests\FeatureTestCase;
 use Illuminate\Routing\Router;
+use PHPUnit\Framework\Attributes\Test;
 
 class EventManagerDeliveryTest extends FeatureTestCase
 {
@@ -42,7 +43,7 @@ class EventManagerDeliveryTest extends FeatureTestCase
         parent::tearDown();
     }
 
-    /** @test */
+    #[Test]
     public function deliveryEventIsSuccessfullySaved()
     {
         $this->assertDatabaseCount($this->deliveryTable, 0);
